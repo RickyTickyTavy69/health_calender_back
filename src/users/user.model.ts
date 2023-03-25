@@ -66,13 +66,36 @@ export class User extends Model<User, UserCreationAttrs>{
     lastPeriodBegin: "06.03.2023",
   periodDuration: "6",
   menstruationDuration: "5",
-    }, description: "user period utils"})
+    }, description: "user period data"})
   @Column({type: DataType.JSON, allowNull: true})
   periodData : {
     lastPeriodBegin: Date,
     periodDuration: string,
     menstruationDuration: string,
   }
+
+  @ApiProperty({example: [{
+      periodDays: ["2023-03-06T13:13:40.000Z",
+  "2023-03-07T13:13:40.000Z",
+  "2023-03-08T13:13:40.000Z",
+  "2023-03-09T13:13:40.000Z"],
+      lutealDays: [
+        "2023-03-18T13:13:40.000Z",
+  "2023-03-19T13:13:40.000Z",
+  "2023-03-20T13:13:40.000Z",
+  "2023-03-21T13:13:40.000Z",
+  "2023-03-22T13:13:40.000Z",
+  "2023-03-23T13:13:40.000Z",
+  "2023-03-24T13:13:40.000Z"
+],
+      ovulationDay: "2023-03-23T13:13:40.000Z",
+    }], description: "user cycles approx. counted for a year"})
+  @Column({type: DataType.JSON, allowNull: true})
+    cyclesData : Array<{
+    periodDays: Array<Date>,
+      lutealDays: Array<Date>,
+      ovulationDay: Date,
+    }>
 
   // if two tables (Users and Roles) belong to each other like many to many, we can create another third table
   // (UserRoles) and in this case we must use the @BelongsToMany decorator from sequelize

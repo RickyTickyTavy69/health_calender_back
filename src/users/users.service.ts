@@ -48,8 +48,10 @@ export class UsersService {
           periodDuration: cycleDuration,
           menstruationDuration: periodDuration,
       }}, {where: {username: username}});
-      const calenderData = await this.cycleCounter.countCycles(body);
-      return result;
+    const calenderData = await this.cycleCounter.countCycles(body);
+    console.log("calendarData is", calenderData);
+    const result1 = await this.userRepository.update({cyclesData: calenderData}, {where: {username: username}});
+      return {result1, result};
   }
 
   async getUser(username: string) {

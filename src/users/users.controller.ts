@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res, UseGuards } from "@nestjs/common";
+import { Body, Controller, Param, Post, Res, UseGuards } from "@nestjs/common";
 import { UserDto } from "../dto/user.dto";
 import { UsersService } from "./users.service"
 import {Response} from "express";
@@ -43,5 +43,7 @@ export class UsersController {
     const user = await this.userService.getUser(body.username);
     return {msg: "user found", user};
   }
+
+
 
 }

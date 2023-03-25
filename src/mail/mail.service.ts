@@ -25,6 +25,7 @@ export class MailService {
         console.log("error with sending email", e);
         return {error: e}
     }
-
   }
+
+
 }
